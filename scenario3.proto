@@ -12,7 +12,7 @@ service MobilityService {
 // Creating of radio profiles
 
 message CreateRadioProfileRequest1 {
-  uint64 id = 101;
+  unit64 id = 101;
   string alias = Radio100;
   repeated string allowed_locations = [“CPH-1”, "CPH-2", “CPH-3”];
  
@@ -28,12 +28,12 @@ message ReadRadioLocationRequest {
 
 
 // Deletion of radio profiles
-message DeleteRadioProfileRequest { uint64 id = 101; }
+message DeleteRadioProfileRequest { unit64 id = 101; }
 
 message DeleteRadioProfileResponse {}
 
 // Getting of radio location
-message GetRadioLocationRequest { uint64 radio_id = "101" }
+message GetRadioLocationRequest { unit64 radio_id = "101" }
 
 message GetRadioLocationResponse {
   message RadioNotFound {}
