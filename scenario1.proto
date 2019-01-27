@@ -1,0 +1,68 @@
+syntax = "proto3";
+package ngcp.interview;
+
+// NOTE: The service block is for documentation only, it is not meant to generate gRPC code.
+service MobilityService {
+  rpc CreateRadioProfile(CreateRadioProfileRequest) returns (CreateRadioProfileResponse);
+  rpc DeleteRadioProfile(DeleteRadioProfileRequest) returns (DeleteRadioProfileResponse);
+  rpc SetRadioLocation(SetRadioLocationRequest) returns (SetRadioLocationResponse);
+  rpc GetRadioLocation(GetRadioLocationRequest) returns (GetRadioLocationResponse);
+}
+
+// Creating of radio profiles
+
+message CreateRadioProfileRequest1 {
+  uint64 id = 100;
+  string alias = Radio100;
+  repeated string allowed_locations = [“CPH-1”, “CPH-2”];
+
+message CreateRadioProfileRequest2 {
+  uint64 id = 101;
+  string alias = Radio100;
+  repeated string allowed_locations = [“CPH-1”, “CPH-2”, “CPH-3”];
+
+}
+
+message CreateRadioProfileResponse {}
+
+// Deletion of radio profiles
+message DeleteRadioProfileRequest { uint64 id = 1; }
+
+message DeleteRadioProfileResponse {}
+
+// Setting of radio location
+message SetRadioLocationRequest {
+  uint64 radio_id = 100;
+  string location = "CPH-1"  (accepted);
+}
+message SetRadioLocationRequest {
+  uint64 radio_id = 101;
+  string location = "CPH-3"  (accepted);
+}
+message SetRadioLocationRequest {
+  uint64 radio_id = 100;
+  string location = "CPH-3"  (denied);
+}
+
+message SetRadioLocationResponse { bool success = 1; }
+
+// Retriving of radio profiles
+message ReadRadioLocationRequest {
+  unit64 radio_id = 100;
+  output = "CPH3"
+}
+message ReadRadioLocationRequest {
+  unit64 radio_id = 101;
+  output = "CPH1"
+}
+
+// Getting of radio location
+message GetRadioLocationRequest { uint64 radio_id = "100", "101"; }
+
+message GetRadioLocationResponse {
+  message RadioNotFound {}
+  oneof result {
+    string location = accepted;
+    RadioNotFound radio_not_found = denied;
+  }
+}

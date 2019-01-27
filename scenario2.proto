@@ -1,0 +1,38 @@
+syntax = "proto3";
+package ngcp.interview;
+
+// NOTE: The service block is for documentation only, it is not meant to generate gRPC code.
+service MobilityService {
+  rpc CreateRadioProfile(CreateRadioProfileRequest) returns (CreateRadioProfileResponse);
+  rpc DeleteRadioProfile(DeleteRadioProfileRequest) returns (DeleteRadioProfileResponse);
+  rpc SetRadioLocation(SetRadioLocationRequest) returns (SetRadioLocationResponse);
+  rpc GetRadioLocation(GetRadioLocationRequest) returns (GetRadioLocationResponse);
+}
+
+// Creating of radio profiles
+
+message CreateRadioProfileRequest1 {
+  uint64 id = 102;
+  string alias = Radio100;
+  repeated string allowed_locations = [“CPH-1”, “CPH-3”];
+ 
+// Retriving of radio profiles
+message ReadRadioLocationRequest {
+  unit64 radio_id = 102;
+  output = "undefined/unknown"
+}
+message ReadRadioLocationRequest {
+  unit64 radio_id = 101;
+  output = "CPH1"
+}
+
+// Getting of radio location
+message GetRadioLocationRequest { uint64 radio_id = "102" }
+
+message GetRadioLocationResponse {
+  message RadioNotFound {}
+  oneof result {
+    string location = accepted;
+    RadioNotFound radio_not_found = undefined/unknown;
+  }
+}
