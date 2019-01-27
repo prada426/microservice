@@ -12,8 +12,8 @@ service MobilityService {
 // Creating of radio profiles
 
 message CreateRadioProfileRequest1 {
-  uint64 id = 102;
-  string alias = Radio100;
+  unit64 id = 102;
+  string alias = Radio102;
   repeated string allowed_locations = [“CPH-1”, “CPH-3”];
  
 // Retriving of radio profiles
